@@ -1,0 +1,21 @@
+ifndef CONTIKI
+  $(error CONTIKI not defined! You must specify where CONTIKI resides!)
+endif
+
+CONTIKI_TARGET_DIRS = .
+CONTIKI_TARGET_MAIN = 
+CONTIKI_TARGET_SOURCEFILES = clock.c
+CONTIKI_SOURCEFILES += $(CONTIKI_TARGET_SOURCEFILES)
+
+TARGET_LIBFILES += -lcriterion
+
+CLEAN += symbols.c symbols.h
+CLEAN += *.criterion
+
+.SUFFIXES:
+
+### Define the CPU directory
+CONTIKI_CPU=$(CONTIKI)/cpu/native
+include $(CONTIKI)/cpu/native/Makefile.native
+
+MODULES+=core/net
