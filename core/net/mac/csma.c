@@ -88,9 +88,9 @@
 
 /* macMaxFrameRetries: Maximum number of re-transmissions attempts. Range 0--7 */
 #ifdef CSMA_CONF_MAX_FRAME_RETRIES
-#define CSMA_MAX_MAX_FRAME_RETRIES CSMA_CONF_MAX_FRAME_RETRIES
+#define CSMA_MAX_FRAME_RETRIES CSMA_CONF_MAX_FRAME_RETRIES
 #else
-#define CSMA_MAX_MAX_FRAME_RETRIES 3
+#define CSMA_MAX_FRAME_RETRIES 3
 #endif
 
 /* Packet metadata */
@@ -412,7 +412,7 @@ send_packet(mac_callback_t sent, void *ptr)
             /* Neighbor and packet successfully allocated */
             if(packetbuf_attr(PACKETBUF_ATTR_MAX_MAC_TRANSMISSIONS) == 0) {
               /* Use default configuration for max transmissions */
-              metadata->max_transmissions = CSMA_MAX_MAX_FRAME_RETRIES + 1;
+              metadata->max_transmissions = CSMA_MAX_FRAME_RETRIES + 1;
             } else {
               metadata->max_transmissions =
                 packetbuf_attr(PACKETBUF_ATTR_MAX_MAC_TRANSMISSIONS);
