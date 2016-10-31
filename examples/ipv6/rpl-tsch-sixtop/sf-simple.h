@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016, Centre for Development of Advanced Computing.
+ * Copyright (c) 2016, Centre for Development of Advanced Computing (C-DAC).
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,24 +30,23 @@
  */
 /**
  * \file
- *         APIs to manipulate 6top protocol (6P)
+ *         A 6P Simple Schedule Function
  * \author
  *         Shalu R <shalur@cdac.in>
  *         Lijo Thomas <lijo@cdac.in>
  *         Yasuyuki Tanaka <yasuyuki.tanaka@inf.ethz.ch>
  */
 
-#ifndef __SIXTOP_6P_H__
-#define __SIXTOP_6P_H__
+#ifndef _SIXTOP_SF_SIMPLE_H_
+#define _SIXTOP_SF_SIMPLE_H_
 
-#include "sixtop.h"
+#include "net/linkaddr.h"
 
-int sixtop_6p_build_6top_request(uint8_t return_code, uint8_t sfid,
-                                  uint8_t seqno, const sixtop_msg_body_t *body);
-int sixtop_6p_build_6top_response(uint8_t return_code, uint8_t sfid,
-                                  uint8_t seqno, const sixtop_msg_body_t *body);
-int sixtop_6p_parse_6top_ie(const uint8_t *buf, uint16_t len,
-                            sixtop_ie_t *sixtop_ie);
+int sf_simple_add_links(linkaddr_t *peer_addr, uint8_t num_links);
+int sf_simple_remove_links(linkaddr_t *peer_addr);
 
+#define SF_SIMPLE_MAX_LINKS  3
+#define SF_SIMPLE_SFID       0xf0
+extern const sixtop_sf_t sf_simple_driver;
 
-#endif /* ! __SIXTOP_6P_H__ */
+#endif /* !_SIXTOP_SF_SIMPLE_H_ */
